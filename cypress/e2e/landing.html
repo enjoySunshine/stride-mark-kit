@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landing contacts test page</title>
+    <!-- Same bare-name resolution the example preview rewrites to. -->
+    <script type="importmap">
+      {
+        "imports": {
+          "wavesurfer.js": "/dist/wavesurfer.esm.js"
+        }
+      }
+    </script>
+    <style>
+      body {
+        margin: 0;
+        padding: 8px;
+        font-family: sans-serif;
+      }
+      #waveform {
+        position: relative;
+        width: 800px;
+        height: 180px;
+        touch-action: none;
+      }
+      #overlay-layer {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        pointer-events: none;
+      }
+      #selection {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        background: rgba(255, 210, 80, 0.25);
+      }
+      .contact-marker {
+        position: absolute;
+        width: 0;
+        border-left: 2px solid;
+      }
+      .controls button {
+        margin: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="waveform">
+      <div id="overlay-layer">
+        <div id="selection"></div>
+        <div id="markers"></div>
+      </div>
+    </div>
+    <div class="controls">
+      <button data-track="footstep">脚步</button>
+      <button data-track="trial-tone">试音</button>
+      <button data-track="ambient">环境底噪</button>
+      <button id="narrow-selection">选区 0.08–0.12</button>
+      <button id="full-selection">选区整段</button>
+      <button id="fail-decode">下次解码失败</button>
+      <button id="export-buckets">导出</button>
+    </div>
+    <div id="export-output"></div>
+    <dl id="readouts">
+      <dt>现在这条</dt>
+      <dd id="readout-track">—</dd>
+      <dt>左接触</dt>
+      <dd id="readout-left-contact">—</dd>
+      <dt>左峰值</dt>
+      <dd id="readout-left-peak">—</dd>
+      <dt>右接触</dt>
+      <dd id="readout-right-contact">—</dd>
+      <dt>右峰值</dt>
+      <dd id="readout-right-peak">—</dd>
+      <dt>选区起止</dt>
+      <dd id="readout-selection">—</dd>
+      <dt>数据层级</dt>
+      <dd id="readout-level">—</dd>
+      <dt>播放头</dt>
+      <dd id="readout-time">0.000 s</dd>
+    </dl>
+    <script>
+      // This page instantiates the controller itself; stop landing.js's
+      // preview auto-boot from creating a second instance.
+      window.__landingManualBoot = true
+    </script>
+    <script type="module" src="/examples/landing.js"></script>
+    <script type="module">
+      if (!window.__landing) window.__landing = new window.LandingController()
+    </script>
+  </body>
+</html>

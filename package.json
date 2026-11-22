@@ -59,6 +59,7 @@
     "cypress:canary": "cypress open --e2e -b chrome:canary",
     "test": "cypress run --browser ${CYPRESS_BROWSER:-chromium}",
     "test:unit": "jest --coverage --selectProjects default",
+    "test:landing": "node --test examples/landing/contact-model.test.js examples/landing/landing.test.js examples/landing/landing-real.test.js",
     "test:leaks": "NODE_OPTIONS=--expose-gc jest --selectProjects leaks --runInBand --coverage=false",
     "serve": "npx live-server --port=9090 --no-browser --ignore='.*,src,cypress,scripts'",
     "start": "npm run build:dev & npm run serve",
